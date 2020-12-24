@@ -3,7 +3,7 @@ using System.IO;
 
 namespace BDInfo
 {
-    public abstract class TSCodecAC3
+    public class TSCodecAC3: ITSAudioCodec
     {
         private static readonly int[] AC3Bitrate = {32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 448, 512, 576, 640};
 
@@ -29,7 +29,7 @@ namespace BDInfo
             return channels;
         }
 
-        public static void Scan(TSAudioStream stream, TSStreamBuffer buffer, ref string tag)
+        public void Scan(TSAudioStream stream, TSStreamBuffer buffer, ref string tag, long? bitrate)
         {
             if (stream.IsInitialized) return;
 

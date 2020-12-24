@@ -1,8 +1,8 @@
 ﻿namespace BDInfo
 {
-    public abstract class TSCodecAVC
+    public class TSCodecAVC: ITSVideoCodec
     {
-        public static void Scan(TSVideoStream stream, TSStreamBuffer buffer, ref string tag)
+        public void Scan(TSVideoStream stream, TSStreamBuffer buffer, ref string tag)
         {
             uint parse = 0;
             byte accessUnitDelimiterParse = 0;

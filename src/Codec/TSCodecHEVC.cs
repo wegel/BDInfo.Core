@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace BDInfo
 {
-    public abstract class TSCodecHEVC
+    public class TSCodecHEVC: ITSVideoCodec
     {
         private static uint _chromaSampleLocTypeTopField;
         private static uint _chromaSampleLocTypeBottomField;
@@ -141,7 +141,7 @@ namespace BDInfo
             }
         }
 
-        public static void Scan(TSVideoStream stream, TSStreamBuffer buffer, ref string tag)
+        public void Scan(TSVideoStream stream, TSStreamBuffer buffer, ref string tag)
         {
             if (stream.IsInitialized) return;
 

@@ -3,9 +3,9 @@ using System.Diagnostics;
 
 namespace BDInfo
 {
-    public abstract class TSCodecTrueHD
+    public class TSCodecTrueHD: ITSAudioCodec
     {
-        public static void Scan(TSAudioStream stream, TSStreamBuffer buffer, ref string tag)
+        public void Scan(TSAudioStream stream, TSStreamBuffer buffer, ref string tag, long? bitrate)
         {
             if (stream.IsInitialized && stream.CoreStream != null && stream.CoreStream.IsInitialized) return;
 
@@ -27,7 +27,7 @@ namespace BDInfo
                 stream.CoreStream ??= new TSAudioStream {StreamType = TSStreamType.AC3_AUDIO};
                 if (stream.CoreStream.IsInitialized) return;
                 buffer.BeginRead();
-                TSCodecAC3.Scan(stream.CoreStream, buffer, ref tag);
+                (new TSCodecAC3()).Scan(stream.CoreStream, buffer, ref tag, bitrate);
 
                 return;
             }

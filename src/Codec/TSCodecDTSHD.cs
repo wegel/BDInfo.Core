@@ -1,13 +1,13 @@
 ﻿namespace BDInfo
 {
-    public abstract class TSCodecDTSHD
+    public class TSCodecDTSHD: ITSAudioCodec
     {
         private static readonly int[] SampleRates =
         {
             0x1F40, 0x3E80, 0x7D00, 0x0FA00, 0x1F400, 0x5622, 0x0AC44, 0x15888, 0x2B110, 0x56220, 0x2EE0, 0x5DC0, 0x0BB80, 0x17700, 0x2EE00, 0x5DC00
         };
 
-        public static void Scan(TSAudioStream stream, TSStreamBuffer buffer, long bitrate, ref string tag)
+        public void Scan(TSAudioStream stream, TSStreamBuffer buffer, ref string tag, long? bitrate)
         {
             if (stream.IsInitialized &&
                 (stream.StreamType == TSStreamType.DTS_HD_SECONDARY_AUDIO || stream.CoreStream != null && stream.CoreStream.IsInitialized))
@@ -32,7 +32,7 @@
                 if (!stream.CoreStream.IsInitialized)
                 {
                     buffer.BeginRead();
-                    TSCodecDTS.Scan(stream.CoreStream, buffer, bitrate, ref tag);
+                    (new TSCodecDTS()).Scan(stream.CoreStream, buffer, ref tag, bitrate);
                 }
 
                 return;
@@ -171,10 +171,10 @@
                 stream.IsVBR = true;
                 stream.IsInitialized = true;
             }
-            else if (bitrate > 0)
+            else if (bitrate.HasValue && bitrate > 0)
             {
                 stream.IsVBR = false;
-                stream.BitRate = bitrate;
+                stream.BitRate = bitrate.Value;
                 if (stream.CoreStream != null)
                 {
                     stream.BitRate += stream.CoreStream.BitRate;

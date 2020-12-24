@@ -2,9 +2,9 @@
 
 namespace BDInfo
 {
-    public abstract class TSCodecMPEG2
+    public class TSCodecMPEG2: ITSVideoCodec
     {
-        public static void Scan(TSVideoStream stream, TSStreamBuffer buffer, ref string tag)
+        public void Scan(TSVideoStream stream, TSStreamBuffer buffer, ref string tag)
         {
             var parse = 0;
             var pictureParse = 0;

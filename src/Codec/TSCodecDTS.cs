@@ -1,6 +1,6 @@
 ﻿namespace BDInfo
 {
-    public abstract class TSCodecDTS
+    public class TSCodecDTS: ITSAudioCodec
     {
         private static readonly int[] DcaSampleRates = {0, 8000, 16000, 32000, 0, 0, 11025, 22050, 44100, 0, 0, 12000, 24000, 48000, 96000, 192000};
 
@@ -12,7 +12,7 @@
 
         private static readonly int[] DcaBitsPerSample = {16, 16, 20, 20, 0, 24, 24};
 
-        public static void Scan(TSAudioStream stream, TSStreamBuffer buffer, long bitrate, ref string tag)
+        public void Scan(TSAudioStream stream, TSStreamBuffer buffer, ref string tag, long? bitrate)
         {
             if (stream.IsInitialized) return;
 
@@ -65,9 +65,9 @@
             switch (stream.BitRate)
             {
                 case 1:
-                    if (bitrate > 0)
+                    if (bitrate != null && bitrate > 0)
                     {
-                        stream.BitRate = bitrate;
+                        stream.BitRate = bitrate.Value;
                         stream.IsVBR = false;
                         stream.IsInitialized = true;
                     }

@@ -75,50 +75,50 @@ namespace BDInfo
             switch (stream.StreamType)
             {
                 case TSStreamType.MPEG2_VIDEO:
-                    TSCodecMPEG2.Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecMPEG2()).Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
                     break;
 
                 case TSStreamType.AVC_VIDEO:
-                    TSCodecAVC.Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecAVC()).Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
                     break;
 
                 case TSStreamType.MVC_VIDEO:
-                    TSCodecMVC.Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecMVC()).Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
                     break;
 
                 case TSStreamType.HEVC_VIDEO:
-                    TSCodecHEVC.Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecHEVC()).Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
                     break;
 
                 case TSStreamType.VC1_VIDEO:
-                    TSCodecVC1.Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecVC1()).Scan((TSVideoStream) stream, buffer, ref streamState.StreamTag);
                     break;
 
                 case TSStreamType.AC3_AUDIO:
-                    TSCodecAC3.Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecAC3()).Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag, bitrate);
                     break;
 
                 case TSStreamType.AC3_PLUS_AUDIO:
                 case TSStreamType.AC3_PLUS_SECONDARY_AUDIO:
-                    TSCodecAC3.Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecAC3()).Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag, bitrate);
                     break;
 
                 case TSStreamType.AC3_TRUE_HD_AUDIO:
-                    TSCodecTrueHD.Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecTrueHD()).Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag, bitrate);
                     break;
 
                 case TSStreamType.LPCM_AUDIO:
-                    TSCodecLPCM.Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag);
+                    (new TSCodecLPCM()).Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag, bitrate);
                     break;
 
                 case TSStreamType.DTS_AUDIO:
-                    TSCodecDTS.Scan((TSAudioStream) stream, buffer, bitrate, ref streamState.StreamTag);
+                    (new TSCodecDTS()).Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag, bitrate);
                     break;
 
                 case TSStreamType.DTS_HD_AUDIO:
                 case TSStreamType.DTS_HD_MASTER_AUDIO:
                 case TSStreamType.DTS_HD_SECONDARY_AUDIO:
-                    TSCodecDTSHD.Scan((TSAudioStream) stream, buffer, bitrate, ref streamState.StreamTag);
+                    (new TSCodecDTSHD()).Scan((TSAudioStream) stream, buffer, ref streamState.StreamTag, bitrate);
                     break;
 
                 default:

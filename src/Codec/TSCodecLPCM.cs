@@ -1,8 +1,8 @@
 ﻿namespace BDInfo
 {
-    public abstract class TSCodecLPCM
+    public class TSCodecLPCM: ITSAudioCodec
     {
-        public static void Scan(TSAudioStream stream, TSStreamBuffer buffer, ref string tag)
+        public void Scan(TSAudioStream stream, TSStreamBuffer buffer, ref string tag, long? bitrate)
         {
             if (stream.IsInitialized) return;
 
