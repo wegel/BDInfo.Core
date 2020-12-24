@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Discutils" Version="0.15.1-ci0007" />
+    <PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.20574.7" />
   </ItemGroup>
 
 </Project>

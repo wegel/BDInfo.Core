@@ -181,7 +181,7 @@ namespace BDInfo
                 Console.Write("Scanning {0,3}% - \t{1,10}  |  {2}...\r", progressValue, elapsedTimeString, remainingTimeString);
         }
 
-        public void GenerateReportCLI(string savePath)
+        public void GenerateReportCLI()
         {
             if (_scanResult.ScanException != null)
             {
